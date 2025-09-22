@@ -65,19 +65,21 @@ eo:Airbus_A320_Neo rdf:type owl:NamedIndividual ,
                               owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                               owl:onDataRange owl:rational
                             ] ;
+                   obo:BFO_0000178 eo:A320_Neo_Engine_1 
+                   obo:BFO_0000178 eo:A320_Neo_Engine_2     
                    eo:Number_of_Jet_Engines 2 ;
                    eo:has_Length_Ft 123.3 ;
                    eo:has_Model_BADA "Airbus A320-271N" ;
                    eo:has_Model_FAA "Airbus A320 Neo" ;
                    eo:has_Tail_HeightFT 39.6 ;
                    eo:has_manufacturer "Airbus" ;
-                   rdfs:label "Airbus A320 Neo Spec" .
+                   rdfs:label "Airbus A320 NEO" .
 
 
 ###  https://test.org/eo/p2#Airbus_A321-111
 eo:Airbus_A321-111 rdf:type owl:NamedIndividual ,
                             cco:ont00000319 ;
-                   rdfs:label "Airbus A321-111 Spec" .
+                   rdfs:label "Airbus A321-111" .
 
 
 ###  https://test.org/eo/p2#Aircraft_Processing_1
@@ -170,8 +172,8 @@ eo:Population_3 rdf:type owl:NamedIndividual ,
                 rdfs:label "Aerospace Engineer Population 3" .
 
 
-###  https://test.org/eo/p2#SOC_code_1
-eo:SOC_code_1 rdf:type owl:NamedIndividual ,
+###  https://test.org/eo/p2#SOC_Aerospace_Engineer_1
+eo:SOC_Aerospace_Engineer_1 rdf:type owl:NamedIndividual ,
                        eo:Soc_Code ;
               obo:BFO_0000055 eo:Adaptability_Evaluation_1 ;
               cco:ont00001808 eo:Aircraft_Processing_1 ;
@@ -183,8 +185,8 @@ eo:SOC_code_1 rdf:type owl:NamedIndividual ,
               skos:definition "Perform engineering duties in designing, constructing, and testing aircraft, missiles, and spacecraft. May conduct basic and applied research to evaluate adaptability of materials and equipment to aircraft design and manufacture. May recommend improvements in testing equipment and techniques." .
 
 
-###  https://test.org/eo/p2#SOC_code_2
-eo:SOC_code_2 rdf:type owl:NamedIndividual ,
+###  https://test.org/eo/p2#SOCAerospace_Engineer_2
+eo:SOC_Aerospace_Engineer_2 rdf:type owl:NamedIndividual ,
                        eo:Soc_Code ;
               obo:BFO_0000055 eo:Adaptability_Evaluation_2 ;
               cco:ont00001808 eo:Aircraft_Processing_2 ;
@@ -196,8 +198,8 @@ eo:SOC_code_2 rdf:type owl:NamedIndividual ,
               skos:definition "Perform engineering duties in designing, constructing, and testing aircraft, missiles, and spacecraft. May conduct basic and applied research to evaluate adaptability of materials and equipment to aircraft design and manufacture. May recommend improvements in testing equipment and techniques." .
 
 
-###  https://test.org/eo/p2#SOC_code_3
-eo:SOC_code_3 rdf:type owl:NamedIndividual ,
+###  https://test.org/eo/p2#SOC_Aerospace_Engineer_3
+eo:SOC_Aerospace_Engineer_3 rdf:type owl:NamedIndividual ,
                        eo:Soc_Code ;
               obo:BFO_0000055 eo:Adaptability_Evaluation_3 ;
               cco:ont00001808 eo:Aircraft_Processing_3 ;
