@@ -65,8 +65,8 @@ eo:Airbus_A320_Neo rdf:type owl:NamedIndividual ,
                               owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                               owl:onDataRange owl:rational
                             ] ;
-                   obo:BFO_0000178 eo:A320_Neo_Engine_1 
-                   obo:BFO_0000178 eo:A320_Neo_Engine_2     
+                   obo:BFO_0000178 eo:A320_Neo_Engine_1 ,
+                                   eo:A320_Neo_Engine_2 ;    
                    eo:Number_of_Jet_Engines 2 ;
                    eo:has_Length_Ft 123.3 ;
                    eo:has_Model_BADA "Airbus A320-271N" ;
@@ -185,7 +185,7 @@ eo:SOC_Aerospace_Engineer_1 rdf:type owl:NamedIndividual ,
               skos:definition "Perform engineering duties in designing, constructing, and testing aircraft, missiles, and spacecraft. May conduct basic and applied research to evaluate adaptability of materials and equipment to aircraft design and manufacture. May recommend improvements in testing equipment and techniques." .
 
 
-###  https://test.org/eo/p2#SOCAerospace_Engineer_2
+###  https://test.org/eo/p2#SOC_Aerospace_Engineer_2
 eo:SOC_Aerospace_Engineer_2 rdf:type owl:NamedIndividual ,
                        eo:Soc_Code ;
               obo:BFO_0000055 eo:Adaptability_Evaluation_2 ;
@@ -215,7 +215,7 @@ eo:SOC_Aerospace_Engineer_3 rdf:type owl:NamedIndividual ,
 eo:Total_Employment_1 rdf:type owl:NamedIndividual ,
                                eo:Total_Employment ;
                       obo:BFO_0000197 eo:Population_1 ;
-                      eo:has_measurement_value 68440 ;
+                      eo:has_measurement_value 68440^^xsd:integer ;
                       rdfs:label "Total Employment 1" .
 
 
@@ -223,7 +223,7 @@ eo:Total_Employment_1 rdf:type owl:NamedIndividual ,
 eo:Total_Employment_2 rdf:type owl:NamedIndividual ,
                                eo:Total_Employment ;
                       obo:BFO_0000197 eo:Population_2 ;
-                      eo:has_measurement_value 68440 ;
+                      eo:has_measurement_value 68440^^xsd:integer ;
                       rdfs:label "Total Employment 2" .
 
 
@@ -231,7 +231,7 @@ eo:Total_Employment_2 rdf:type owl:NamedIndividual ,
 eo:Total_Employment_3 rdf:type owl:NamedIndividual ,
                                eo:Total_Employment ;
                       obo:BFO_0000197 eo:Population_3 ;
-                      eo:has_measurement_value 9060 ;
+                      eo:has_measurement_value 9060^^xsd:integer ;
                       rdfs:label "Total Employment 3" .
 
 
