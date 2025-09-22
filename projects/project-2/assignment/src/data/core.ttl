@@ -291,6 +291,7 @@ eo:has_Tail_HeightFT rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf owl:topDataProperty ;
                      rdfs:range xsd:decimal ;
                      rdfs:label "has Tail Height Ft" .
+                     skos:definition "Height of a tail on a Aeroplane."
 
 
 ###  https://test.org/eo/p2#has_area
