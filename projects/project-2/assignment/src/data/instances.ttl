@@ -27,7 +27,7 @@ eo:A320_Neo_Engine_2 rdf:type owl:NamedIndividual ,
 ###  https://test.org/eo/p2#A321-111_Max_approach
 eo:A321-111_Max_approach rdf:type owl:NamedIndividual ,
                                   obo:BFO_0000017 ;
-                         cco:ont00001808 eo:Airbus_A321-111 ;
+                         cco:ont00001942 eo:Airbus_A321-111 ;
                          eo:has_measurement_value 142 ;
                          rdfs:label "A321-111 max approach" .
 
