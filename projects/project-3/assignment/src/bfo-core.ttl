@@ -693,7 +693,12 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "008-BFO" ;
                                              rdfs:label "continuant"@en ;
                                              skos:definition "(Elucidation) A continuant is an entity that persists, endures, or continues to exist through time while maintaining its identity"@en ;
-                                             skos:example "A human being; a tennis ball; a cave; a region of space; someone's temperature"@en .
+                                             skos:example "A human being; a tennis ball; a cave; a region of space; someone's temperature"@en ;
+                                             rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000176> ; # continuant part of
+        owl:minCardinality "0"^^xsd:nonNegativeInteger
+    ] .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000003
@@ -702,7 +707,12 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              dc11:identifier "077-BFO" ;
                                              rdfs:label "occurrent"@en ;
                                              skos:definition "(Elucidation) An occurrent is an entity that unfolds itself in time or it is the start or end of such an entity or it is a temporal or spatiotemporal region"@en ;
-                                             skos:example "As for process, history, process boundary, spatiotemporal region, zero-dimensional temporal region, one-dimensional temporal region, temporal interval, temporal instant."@en .
+                                             skos:example "As for process, history, process boundary, spatiotemporal region, zero-dimensional temporal region, one-dimensional temporal region, temporal interval, temporal instant."@en ;
+                                             rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000132> ; # occurrent part of
+        owl:minCardinality "0"^^xsd:nonNegativeInteger
+    ] .
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000004
