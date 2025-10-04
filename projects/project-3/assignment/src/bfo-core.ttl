@@ -7,6 +7,7 @@
 @prefix dc11: <http://purl.org/dc/elements/1.1/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ies: <http://ies.data.gov.uk/ontology/ies4#> .
 @base <http://purl.obolibrary.org/obo/bfo> .
 
 <http://purl.obolibrary.org/obo/bfo.owl> rdf:type owl:Ontology ;
@@ -708,6 +709,10 @@ skos:scopeNote rdf:type owl:AnnotationProperty .
                                              rdfs:label "occurrent"@en ;
                                              skos:definition "(Elucidation) An occurrent is an entity that unfolds itself in time or it is the start or end of such an entity or it is a temporal or spatiotemporal region"@en ;
                                              skos:example "As for process, history, process boundary, spatiotemporal region, zero-dimensional temporal region, one-dimensional temporal region, temporal interval, temporal instant."@en ;
+                                             skos:relatedMatch ies:Event ;
+                                             rdfs:subClassOf ies:Event ;
+                                             owl:equivalentClass ies:Event ;
+                                             rdfs:seeAlso ies:Event ;
                                              rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty <http://purl.obolibrary.org/obo/BFO_0000132> ; # occurrent part of

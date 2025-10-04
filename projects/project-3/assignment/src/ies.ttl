@@ -31,6 +31,7 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix vann:    <http://purl.org/vocab/vann/> .
 @prefix ies:     <http://ies.data.gov.uk/ontology/ies4#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
 
 # Ontology Definition & Metadata
 ies: a owl:Ontology ;
@@ -1256,6 +1257,8 @@ ies:Event a rdfs:Class ;
     rdfs:comment "An Event represents an activity or incident, involving one or more participating entities, that occurred/started at a specific point in time – e.g. a meeting, or a telephone call." ;
     ies:powertype ies:ClassOfEvent ;
     rdfs:subClassOf ies:Element ;
+    rdfs:seeAlso obo:BFO_0000003 ;
+    skos:relatedMatch obo:BFO_0000003 .
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ies:isPartOf ;
