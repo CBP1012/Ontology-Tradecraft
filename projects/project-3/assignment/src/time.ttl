@@ -459,7 +459,7 @@ Detailed guidance about working with time zones is given in http://www.w3.org/TR
   a owl:DeprecatedClass ;
   rdfs:label "Year"@en ;
   rdfs:subClassOf :DurationDescription ;
-  skos:closeMatch ccco:ont00001444 ;
+  skos:closeMatch cco:ont00001444 ;
   rdfs:seeAlso cco:ont00001444 ;
   rdfs:subClassOf [
       a owl:Restriction ;

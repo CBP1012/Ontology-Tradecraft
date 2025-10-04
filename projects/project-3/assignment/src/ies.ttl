@@ -32,6 +32,7 @@
 @prefix vann:    <http://purl.org/vocab/vann/> .
 @prefix ies:     <http://ies.data.gov.uk/ontology/ies4#> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 # Ontology Definition & Metadata
 ies: a owl:Ontology ;
@@ -1258,7 +1259,7 @@ ies:Event a rdfs:Class ;
     ies:powertype ies:ClassOfEvent ;
     rdfs:subClassOf ies:Element ;
     rdfs:seeAlso obo:BFO_0000003 ;
-    skos:relatedMatch obo:BFO_0000003 .
+    skos:relatedMatch obo:BFO_0000003 ;
     rdfs:subClassOf [
         a owl:Restriction ;
         owl:onProperty ies:isPartOf ;
