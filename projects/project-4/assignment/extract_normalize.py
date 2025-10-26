@@ -4,7 +4,7 @@ Normalize heterogeneous measurement feeds to a common CSV:
 observation_id, observed_entity_id, quantity_kind, value, unit_code, timestamp, source
 
 Run:
-  python scripts/extract_normalize.py
+  python scripts/normalize_readings.py
 Outputs:
   data/interim/readings_normalized.csv
 """
@@ -18,8 +18,9 @@ from datetime import timezone
 
 import pandas as pd
 
-ROOT = pathlib.Path(__file__).resolve().parents[1]
-SRC = ROOT / "data" / "source"
+# Updated path to your GitHub repository
+ROOT = pathlib.Path(r"C:\Users\crist\Documents\GitHub\Ontology-Tradecraft\Ontology-Tradecraft\projects\project-4\assignment\src")
+SRC = ROOT / "data" 
 OUT_DIR = ROOT / "data" / "interim"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 OUT_CSV = OUT_DIR / "readings_normalized.csv"
@@ -233,7 +234,7 @@ def main():
     b_path = SRC / "sensor_B.json"
 
     if not a_path.exists() or not b_path.exists():
-        raise SystemExit("Missing input files in data/source/: sensor_A.csv and/or sensor_B.json")
+        raise SystemExit(f"Missing input files in {SRC}: sensor_A.csv and/or sensor_B.json")
 
     df_a = normalize_csv_sensor_a(a_path)
     df_b = normalize_json_sensor_b(b_path)
@@ -250,6 +251,9 @@ def main():
     # Final: write CSV with explicit encoding & ISO dates
     # NOTE: timestamps will be written as ISO strings by pandas.
     df.to_csv(OUT_CSV, index=False, quoting=csv.QUOTE_MINIMAL)
+
+    print(f"\n✓ Successfully wrote normalized data to: {OUT_CSV}")
+    print(f"  Total records: {len(df)}")
 
     # Minimal summary students can expand:
     print("\n=== Normalized Summary ===")
