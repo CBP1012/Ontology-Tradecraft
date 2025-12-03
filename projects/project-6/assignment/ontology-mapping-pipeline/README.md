@@ -164,27 +164,27 @@ python scripts/run_pipeline.py \
 
 ## Implementation Phases
 
-### Phase 1: Core Infrastructure (Week 1)
+### Phase 1: Core Infrastructure 
 - [ ] Set up project structure and dependencies
 - [ ] Implement LLM client abstraction
 - [ ] Create ontology loader and label extractor
 
-### Phase 2: Mapping Generation (Week 2)
+### Phase 2: Mapping Generation 
 - [ ] Design and test prompts for candidate generation
 - [ ] Implement label/definition rewriting
 - [ ] Build SSSOM output writer
 
-### Phase 3: Scoring & Explanation (Week 3)
+### Phase 3: Scoring & Explanation 
 - [ ] Implement plausibility scorer
 - [ ] Add explanation/rationale generation
 - [ ] Create confidence calibration
 
-### Phase 4: Validation (Week 4)
+### Phase 4: Validation 
 - [ ] Integrate OWL reasoner (HermiT/Pellet)
 - [ ] Implement SHACL shape generator and validator
 - [ ] Build SPARQL QC query library
 
-### Phase 5: CI/CD & Polish (Week 5)
+### Phase 5: CI/CD & Polish 
 - [ ] Set up GitHub Actions workflow
 - [ ] Add comprehensive tests
 - [ ] Documentation and examples
