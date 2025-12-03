@@ -1,0 +1,10 @@
+# mapping_set_id: urn:uuid:20251202234006
+# mapping_set_title: 'Mappings: source_test to target_test'
+# mapping_tool: ontology-mapping-pipeline
+# mapping_tool_version: 0.1.0
+# mapping_date: '2025-12-02'
+# license: https://creativecommons.org/publicdomain/zero/1.0/
+# subject_source: data/ontologies/source_test.ttl
+# object_source: data/ontologies/target_test.ttl
+
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment

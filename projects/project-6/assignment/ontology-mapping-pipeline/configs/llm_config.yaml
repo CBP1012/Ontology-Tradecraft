@@ -1,0 +1,32 @@
+# LLM Provider Configuration
+# Set your API key via environment variable or directly here
+
+provider: anthropic  # or openai
+
+anthropic:
+  api_key: ${ANTHROPIC_API_KEY}  # Set via environment variable
+  model: "claude-sonnet-4-20250514"
+  max_tokens: 4096
+  temperature: 0.1
+  timeout: 60
+
+openai:
+  api_key: ${OPENAI_API_KEY}
+  model: "gpt-4-turbo"
+  max_tokens: 4096
+  temperature: 0.1
+  timeout: 60
+
+rate_limiting:
+  enabled: true
+  requests_per_minute: 50
+  tokens_per_minute: 100000
+  retry_attempts: 3
+  retry_delay: 1.0
+  backoff_multiplier: 2.0
+
+caching:
+  enabled: true
+  cache_dir: ".cache/llm"
+  ttl: 86400
+  max_size_mb: 500

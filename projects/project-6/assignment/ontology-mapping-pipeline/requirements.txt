@@ -1,0 +1,47 @@
+# Core dependencies
+rdflib>=7.0.0
+owlready2>=0.45
+pyshacl>=0.25.0
+sssom>=0.4.0
+
+# LLM clients
+anthropic>=0.25.0
+openai>=1.12.0
+
+# Async support
+aiohttp>=3.9.0
+asyncio>=3.4.3
+
+# Data processing
+pandas>=2.1.0
+numpy>=1.26.0
+
+# Embeddings for semantic similarity
+sentence-transformers>=2.3.0
+
+# Configuration
+pyyaml>=6.0.1
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# CLI
+click>=8.1.0
+rich>=13.7.0
+
+# Caching
+diskcache>=5.6.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+
+# Development
+black>=24.1.0
+ruff>=0.2.0
+mypy>=1.8.0
+
+# Java bridge for reasoners (optional)
+# jpype1>=1.5.0
+

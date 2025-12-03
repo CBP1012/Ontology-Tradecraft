@@ -1,0 +1,37 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex: <http://example.org/source#> .
+
+<http://example.org/source> a owl:Ontology ;
+    rdfs:label "Source Test Ontology" ;
+    rdfs:comment "A simple test ontology for the mapping pipeline" .
+
+ex:Animal a owl:Class ;
+    rdfs:label "Animal" ;
+    rdfs:comment "A living organism that feeds on organic matter" .
+
+ex:Mammal a owl:Class ;
+    rdfs:label "Mammal" ;
+    rdfs:subClassOf ex:Animal ;
+    rdfs:comment "A warm-blooded vertebrate with hair or fur" .
+
+ex:Dog a owl:Class ;
+    rdfs:label "Dog" ;
+    rdfs:subClassOf ex:Mammal ;
+    rdfs:comment "A domesticated carnivorous mammal" .
+
+ex:Cat a owl:Class ;
+    rdfs:label "Cat" ;
+    rdfs:subClassOf ex:Mammal ;
+    rdfs:comment "A small domesticated carnivorous mammal" .
+
+ex:Bird a owl:Class ;
+    rdfs:label "Bird" ;
+    rdfs:subClassOf ex:Animal ;
+    rdfs:comment "A warm-blooded egg-laying vertebrate with feathers" .
+
+ex:Fish a owl:Class ;
+    rdfs:label "Fish" ;
+    rdfs:subClassOf ex:Animal ;
+    rdfs:comment "A limbless cold-blooded vertebrate with gills" .

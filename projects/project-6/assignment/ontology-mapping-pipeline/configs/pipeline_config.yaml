@@ -1,0 +1,54 @@
+# Pipeline Configuration
+
+pipeline:
+  batch_size: 50
+  parallel_workers: 4
+  cache_enabled: true
+  cache_dir: ".cache/pipeline"
+  log_level: INFO
+  log_file: "logs/pipeline.log"
+
+mapping:
+  predicates:
+    - "owl:equivalentClass"
+    - "skos:exactMatch"
+    - "skos:closeMatch"
+    - "skos:broadMatch"
+    - "skos:narrowMatch"
+    - "skos:relatedMatch"
+  min_confidence: 0.7
+  high_confidence: 0.9
+  require_explanation: true
+  include_alternatives: false
+  rewrite_labels: true
+  extract_synonyms: true
+
+scoring:
+  weights:
+    lexical_similarity: 0.2
+    semantic_similarity: 0.3
+    structural_similarity: 0.2
+    llm_confidence: 0.3
+  embedding_model: "all-MiniLM-L6-v2"
+
+validation:
+  run_reasoner: true
+  reasoner: "hermit"
+  reasoner_timeout: 300
+  run_shacl: true
+  shacl_shapes_dir: "data/shacl_shapes"
+  generate_shapes: true
+  run_sparql_qc: true
+  sparql_queries_dir: "src/sparql/queries"
+  fail_on_inconsistency: true
+  fail_on_shacl_violation: false
+  max_violations_allowed: 10
+
+output:
+  format: "sssom"
+  compression: null
+  mapping_tool: "ontology-mapping-pipeline"
+  mapping_tool_version: "0.1.0"
+  author_id: "orcid:0000-0000-0000-0000"
+  generate_report: true
+  report_format: "html"

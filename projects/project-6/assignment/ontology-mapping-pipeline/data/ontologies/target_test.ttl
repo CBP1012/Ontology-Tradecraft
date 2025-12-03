@@ -1,0 +1,37 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix tgt: <http://example.org/target#> .
+
+<http://example.org/target> a owl:Ontology ;
+    rdfs:label "Target Test Ontology" ;
+    rdfs:comment "A simple test ontology to map against" .
+
+tgt:Organism a owl:Class ;
+    rdfs:label "Organism" ;
+    rdfs:comment "A living entity" .
+
+tgt:Vertebrate a owl:Class ;
+    rdfs:label "Vertebrate" ;
+    rdfs:subClassOf tgt:Organism ;
+    rdfs:comment "An animal with a backbone" .
+
+tgt:Canine a owl:Class ;
+    rdfs:label "Canine" ;
+    rdfs:subClassOf tgt:Vertebrate ;
+    rdfs:comment "A member of the dog family Canidae" .
+
+tgt:Feline a owl:Class ;
+    rdfs:label "Feline" ;
+    rdfs:subClassOf tgt:Vertebrate ;
+    rdfs:comment "A member of the cat family Felidae" .
+
+tgt:Avian a owl:Class ;
+    rdfs:label "Avian" ;
+    rdfs:subClassOf tgt:Vertebrate ;
+    rdfs:comment "Relating to birds" .
+
+tgt:Pisces a owl:Class ;
+    rdfs:label "Pisces" ;
+    rdfs:subClassOf tgt:Organism ;
+    rdfs:comment "Fish - aquatic vertebrates with gills" .
