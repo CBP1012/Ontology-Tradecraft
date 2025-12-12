@@ -22,7 +22,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Setup path
-PROJECT_ROOT = Path(__file__).parent.parent.absolute()
+PROJECT_ROOT = Path(__file__).parent.absolute()
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -627,11 +627,7 @@ with validation using SHACL, SPARQL QC, and OWL reasoning.[/white]
 8. ✓ End-to-end validation pipeline
 9. ✓ SSSOM output format
 
-[bold]For your presentation:[/bold]
-• Show the architecture diagram in docs/OUTLINE.md
-• Run this demo live
-• Explain each component's role
-• Discuss how LLMs enhance traditional matching""",
+""",
             title="Summary",
             border_style="green"
         ))

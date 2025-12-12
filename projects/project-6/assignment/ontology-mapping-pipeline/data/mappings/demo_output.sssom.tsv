@@ -1,0 +1,12 @@
+# mapping_set_id: urn:uuid:20251211185650
+# mapping_set_title: Demo Mappings
+# mapping_tool: ontology-mapping-pipeline
+# mapping_tool_version: 0.1.0
+# mapping_date: '2025-12-11'
+# license: https://creativecommons.org/publicdomain/zero/1.0/
+# creator_id:
+# - demo:user
+
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	confidence	comment
+http://example.org/source#Dog	Dog	skos:exactMatch	http://example.org/target#Canine	Canine	semapv:LexicalMatching	0.95	Both refer to domesticated canids
+http://example.org/source#Cat	Cat	skos:exactMatch	http://example.org/target#Feline	Feline	semapv:LexicalMatching	0.92	Both refer to domesticated felids
