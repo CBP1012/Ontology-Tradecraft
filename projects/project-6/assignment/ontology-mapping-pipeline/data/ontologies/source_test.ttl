@@ -1,37 +1,278 @@
+@prefix : <http://example.org/source-ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix ex: <http://example.org/source#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
 
-<http://example.org/source> a owl:Ontology ;
-    rdfs:label "Source Test Ontology" ;
-    rdfs:comment "A simple test ontology for the mapping pipeline" .
+<http://example.org/source-ontology>
+    rdf:type owl:Ontology ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ;
+    dc:title "Source Ontology - Healthcare Domain"@en ;
+    dc:description "A BFO-aligned source ontology for healthcare concepts, used in ontology mapping demonstrations."@en ;
+    rdfs:comment "This ontology follows the Basic Formal Ontology (BFO) 2020 upper-level structure."@en .
 
-ex:Animal a owl:Class ;
-    rdfs:label "Animal" ;
-    rdfs:comment "A living organism that feeds on organic matter" .
+#################################################################
+#    Classes - Material Entities (subclasses of BFO:0000040)
+#################################################################
 
-ex:Mammal a owl:Class ;
-    rdfs:label "Mammal" ;
-    rdfs:subClassOf ex:Animal ;
-    rdfs:comment "A warm-blooded vertebrate with hair or fur" .
+### Human Patient
+:Patient
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000030 ;  # BFO object
+    rdfs:label "Patient"@en ;
+    skos:prefLabel "Patient"@en ;
+    skos:altLabel "Healthcare Recipient"@en ;
+    skos:definition "A human being who receives medical care or treatment from a healthcare provider."@en ;
+    skos:example "A person admitted to hospital for surgery."@en .
 
-ex:Dog a owl:Class ;
-    rdfs:label "Dog" ;
-    rdfs:subClassOf ex:Mammal ;
-    rdfs:comment "A domesticated carnivorous mammal" .
+### Medical Device
+:MedicalDevice
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000030 ;  # BFO object
+    rdfs:label "Medical Device"@en ;
+    skos:prefLabel "Medical Device"@en ;
+    skos:definition "An object designed for use in the diagnosis, treatment, or prevention of disease."@en ;
+    skos:example "A blood pressure monitor, surgical instrument, or pacemaker."@en .
 
-ex:Cat a owl:Class ;
-    rdfs:label "Cat" ;
-    rdfs:subClassOf ex:Mammal ;
-    rdfs:comment "A small domesticated carnivorous mammal" .
+### Medication
+:Medication
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000040 ;  # BFO material entity
+    rdfs:label "Medication"@en ;
+    skos:prefLabel "Medication"@en ;
+    skos:altLabel "Drug"@en ;
+    skos:altLabel "Pharmaceutical"@en ;
+    skos:definition "A material substance used to diagnose, cure, treat, or prevent disease."@en ;
+    skos:example "Aspirin, insulin, or antibiotics."@en .
 
-ex:Bird a owl:Class ;
-    rdfs:label "Bird" ;
-    rdfs:subClassOf ex:Animal ;
-    rdfs:comment "A warm-blooded egg-laying vertebrate with feathers" .
+### Body Part
+:BodyPart
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000024 ;  # BFO fiat object part
+    rdfs:label "Body Part"@en ;
+    skos:prefLabel "Body Part"@en ;
+    skos:altLabel "Anatomical Structure"@en ;
+    skos:definition "A demarcated portion of a human or animal body."@en ;
+    skos:example "The heart, liver, or left arm."@en .
 
-ex:Fish a owl:Class ;
-    rdfs:label "Fish" ;
-    rdfs:subClassOf ex:Animal ;
-    rdfs:comment "A limbless cold-blooded vertebrate with gills" .
+### Hospital
+:Hospital
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000029 ;  # BFO site
+    rdfs:label "Hospital"@en ;
+    skos:prefLabel "Hospital"@en ;
+    skos:altLabel "Medical Facility"@en ;
+    skos:definition "A site where medical diagnosis, treatment, and care are provided to patients."@en ;
+    skos:example "A general hospital, teaching hospital, or specialized clinic."@en .
+
+#################################################################
+#    Classes - Processes (subclasses of BFO:0000015)
+#################################################################
+
+### Medical Treatment
+:MedicalTreatment
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # BFO process
+    rdfs:label "Medical Treatment"@en ;
+    skos:prefLabel "Medical Treatment"@en ;
+    skos:altLabel "Therapeutic Intervention"@en ;
+    skos:definition "A process of providing medical care to diagnose, cure, or manage a disease or condition."@en ;
+    skos:example "Surgery, chemotherapy, or physical therapy."@en .
+
+### Surgical Procedure
+:SurgicalProcedure
+    rdf:type owl:Class ;
+    rdfs:subClassOf :MedicalTreatment ;
+    rdfs:label "Surgical Procedure"@en ;
+    skos:prefLabel "Surgical Procedure"@en ;
+    skos:altLabel "Surgery"@en ;
+    skos:altLabel "Operation"@en ;
+    skos:definition "A medical treatment process that involves incision into the body to repair, remove, or replace tissue."@en ;
+    skos:example "Appendectomy, heart bypass surgery, or knee replacement."@en .
+
+### Diagnosis Process
+:DiagnosisProcess
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # BFO process
+    rdfs:label "Diagnosis Process"@en ;
+    skos:prefLabel "Diagnosis Process"@en ;
+    skos:altLabel "Diagnostic Procedure"@en ;
+    skos:definition "A process of identifying a disease or condition from its signs and symptoms."@en ;
+    skos:example "Physical examination, blood test analysis, or MRI scan interpretation."@en .
+
+### Medication Administration
+:MedicationAdministration
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # BFO process
+    rdfs:label "Medication Administration"@en ;
+    skos:prefLabel "Medication Administration"@en ;
+    skos:definition "A process of giving medication to a patient via a specific route."@en ;
+    skos:example "Oral administration, intravenous injection, or topical application."@en .
+
+#################################################################
+#    Classes - Dispositions (subclasses of BFO:0000016)
+#################################################################
+
+### Disease
+:Disease
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000016 ;  # BFO disposition
+    rdfs:label "Disease"@en ;
+    skos:prefLabel "Disease"@en ;
+    skos:altLabel "Disorder"@en ;
+    skos:altLabel "Illness"@en ;
+    skos:definition "A disposition of an organism that manifests as abnormal functioning or impaired health."@en ;
+    skos:example "Diabetes, cancer, or hypertension."@en .
+
+### Symptom Disposition
+:SymptomDisposition
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000016 ;  # BFO disposition
+    rdfs:label "Symptom Disposition"@en ;
+    skos:prefLabel "Symptom Disposition"@en ;
+    skos:definition "A disposition of an organism that can be realized as a symptom when certain conditions are met."@en ;
+    skos:example "A disposition to experience fever when infected."@en .
+
+#################################################################
+#    Classes - Roles (subclasses of BFO:0000023)
+#################################################################
+
+### Healthcare Provider Role
+:HealthcareProviderRole
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000023 ;  # BFO role
+    rdfs:label "Healthcare Provider Role"@en ;
+    skos:prefLabel "Healthcare Provider Role"@en ;
+    skos:definition "A role that inheres in a person who provides medical care or services."@en ;
+    skos:example "The role of being a physician, nurse, or pharmacist."@en .
+
+### Patient Role
+:PatientRole
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000023 ;  # BFO role
+    rdfs:label "Patient Role"@en ;
+    skos:prefLabel "Patient Role"@en ;
+    skos:definition "A role that inheres in a person who is receiving medical care."@en ;
+    skos:example "The role assumed by a person during hospitalization."@en .
+
+#################################################################
+#    Classes - Qualities (subclasses of BFO:0000019)
+#################################################################
+
+### Vital Sign Quality
+:VitalSignQuality
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000019 ;  # BFO quality
+    rdfs:label "Vital Sign Quality"@en ;
+    skos:prefLabel "Vital Sign Quality"@en ;
+    skos:definition "A quality of an organism that indicates physiological status."@en ;
+    skos:example "Body temperature, blood pressure, heart rate."@en .
+
+### Severity Quality
+:SeverityQuality
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000019 ;  # BFO quality
+    rdfs:label "Severity Quality"@en ;
+    skos:prefLabel "Severity Quality"@en ;
+    skos:definition "A quality that describes the intensity or seriousness of a condition."@en ;
+    skos:example "Mild, moderate, or severe classification of a disease."@en .
+
+#################################################################
+#    Classes - Generically Dependent Continuants (BFO:0000031)
+#################################################################
+
+### Medical Record
+:MedicalRecord
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000031 ;  # BFO generically dependent continuant
+    rdfs:label "Medical Record"@en ;
+    skos:prefLabel "Medical Record"@en ;
+    skos:altLabel "Health Record"@en ;
+    skos:altLabel "Patient Record"@en ;
+    skos:definition "A generically dependent continuant that is a documentation of a patient's medical history and care."@en ;
+    skos:example "Electronic health record, discharge summary, or lab report."@en .
+
+### Clinical Guideline
+:ClinicalGuideline
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000031 ;  # BFO generically dependent continuant
+    rdfs:label "Clinical Guideline"@en ;
+    skos:prefLabel "Clinical Guideline"@en ;
+    skos:altLabel "Treatment Protocol"@en ;
+    skos:definition "A generically dependent continuant that specifies recommendations for clinical practice."@en ;
+    skos:example "Guidelines for diabetes management or sepsis treatment protocols."@en .
+
+#################################################################
+#    Classes - Temporal Regions (BFO:0000008)
+#################################################################
+
+### Treatment Period
+:TreatmentPeriod
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000202 ;  # BFO temporal interval
+    rdfs:label "Treatment Period"@en ;
+    skos:prefLabel "Treatment Period"@en ;
+    skos:definition "A temporal interval during which a medical treatment occurs."@en ;
+    skos:example "A 6-week course of antibiotics or a 2-day hospital stay."@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+### has participant (using BFO relation)
+:treatedBy
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000057 ;  # BFO has participant
+    rdfs:domain :MedicalTreatment ;
+    rdfs:range :Patient ;
+    rdfs:label "treated by"@en ;
+    skos:definition "Relates a medical treatment to the patient who participates in it."@en .
+
+### occurs in (using BFO relation)
+:occursAt
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000066 ;  # BFO occurs in
+    rdfs:domain :MedicalTreatment ;
+    rdfs:range :Hospital ;
+    rdfs:label "occurs at"@en ;
+    skos:definition "Relates a medical treatment to the site where it occurs."@en .
+
+### bearer of (using BFO relation)
+:hasDiagnosis
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000196 ;  # BFO bearer of
+    rdfs:domain :Patient ;
+    rdfs:range :Disease ;
+    rdfs:label "has diagnosis"@en ;
+    skos:definition "Relates a patient to a disease that inheres in them."@en .
+
+### realizes (using BFO relation)
+:realizesRole
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000055 ;  # BFO realizes
+    rdfs:domain :MedicalTreatment ;
+    rdfs:range :HealthcareProviderRole ;
+    rdfs:label "realizes role"@en ;
+    skos:definition "Relates a process to a role it realizes."@en .
+
+### occupies temporal region (using BFO relation)
+:hasDuration
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000199 ;  # BFO occupies temporal region
+    rdfs:domain :MedicalTreatment ;
+    rdfs:range :TreatmentPeriod ;
+    rdfs:label "has duration"@en ;
+    skos:definition "Relates a treatment to its temporal extent."@en .
+
+### is carrier of (using BFO relation)
+:documentedIn
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000101 ;  # BFO is carrier of
+    rdfs:domain :Patient ;
+    rdfs:range :MedicalRecord ;
+    rdfs:label "documented in"@en ;
+    skos:definition "Relates a patient to the medical record that documents their information."@en .

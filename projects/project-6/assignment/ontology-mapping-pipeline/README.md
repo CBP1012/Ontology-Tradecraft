@@ -155,12 +155,36 @@ pip install -r requirements.txt
 cp configs/llm_config.yaml.example configs/llm_config.yaml
 # Edit llm_config.yaml with your API keys
 
-# Run the pipeline
-python scripts/run_pipeline.py \
-    --source data/ontologies/source.owl \
-    --target data/ontologies/target.owl \
-    --output data/mappings/result.sssom.tsv
+# Run the pipeline with default test ontologies
+python scripts/demo_pipeline.py
+
+# Run with custom ontology files
+python scripts/demo_pipeline.py \
+    --source data/ontologies/source_test.ttl \
+    --target data/ontologies/target_test.ttl
+
+# Run in batch mode (no interactive pauses)
+python scripts/demo_pipeline.py \
+    --source data/ontologies/source_test.ttl \
+    --target data/ontologies/target_test.ttl \
+    --output data/mappings/ \
+    --no-interactive
+
+# Additional options
+python scripts/demo_pipeline.py --help
 ```
+
+### Command Line Options
+
+| Option | Short | Description |
+|--------|-------|-------------|
+| `--source` | `-s` | Path to source ontology TTL file |
+| `--target` | `-t` | Path to target ontology TTL file |
+| `--output` | `-o` | Output directory for results |
+| `--min-confidence` | | Minimum confidence threshold (default: 0.3) |
+| `--no-interactive` | | Skip interactive pauses between steps |
+| `--skip-reasoner` | | Skip OWL reasoner (if Java not installed) |
+| `--help` | `-h` | Show help message |
 
 ## Implementation Phases
 
@@ -188,7 +212,3 @@ python scripts/run_pipeline.py \
 - [ ] Set up GitHub Actions workflow
 - [ ] Add comprehensive tests
 - [ ] Documentation and examples
-
-## License
-
-MIT License - See LICENSE file

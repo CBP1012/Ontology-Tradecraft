@@ -116,13 +116,22 @@ class SSSOMWriter:
         f: TextIO,
         mappings: list[MappingCandidate | ScoredMapping | ExplainedMapping],
     ) -> None:
-        """Write mapping rows."""
+        """Write mapping rows with deduplication."""
         # Write column headers
         f.write("\t".join(SSSOM_COLUMNS) + "\n")
         
+        # Track seen mappings to prevent duplicates
+        seen_mappings = set()
+        
         for mapping in mappings:
             row = self._mapping_to_row(mapping)
-            f.write("\t".join(str(v) for v in row) + "\n")
+            
+            # Create a unique key for deduplication (subject_id, predicate_id, object_id)
+            mapping_key = (row[0], row[2], row[3])  # subject_id, predicate_id, object_id
+            
+            if mapping_key not in seen_mappings:
+                seen_mappings.add(mapping_key)
+                f.write("\t".join(str(v) for v in row) + "\n")
     
     def _mapping_to_row(
         self,
@@ -167,11 +176,50 @@ class SSSOMWriter:
         return text.replace("\t", " ").replace("\n", " ").strip()
 
 
+def deduplicate_mappings(
+    mappings: list[MappingCandidate | ScoredMapping | ExplainedMapping],
+) -> list[MappingCandidate | ScoredMapping | ExplainedMapping]:
+    """
+    Remove duplicate mappings, keeping the one with highest confidence.
+    
+    Args:
+        mappings: List of mappings that may contain duplicates
+        
+    Returns:
+        Deduplicated list of mappings
+    """
+    seen = {}  # key -> (index, confidence)
+    
+    for i, mapping in enumerate(mappings):
+        # Extract candidate and confidence
+        if isinstance(mapping, ScoredMapping):
+            candidate = mapping.candidate
+            confidence = mapping.combined_score
+        elif isinstance(mapping, ExplainedMapping):
+            candidate = mapping.candidate
+            confidence = candidate.confidence
+        else:
+            candidate = mapping
+            confidence = candidate.confidence
+        
+        # Create unique key
+        key = (candidate.source_iri, candidate.predicate, candidate.target_iri)
+        
+        # Keep mapping with highest confidence
+        if key not in seen or confidence > seen[key][1]:
+            seen[key] = (i, confidence)
+    
+    # Return mappings in original order, deduplicated
+    indices = sorted(idx for idx, _ in seen.values())
+    return [mappings[i] for i in indices]
+
+
 def write_sssom(
     mappings: list[MappingCandidate | ScoredMapping | ExplainedMapping],
     output_path: str | Path,
     title: str = "Generated Mappings",
     mapping_set_id: Optional[str] = None,
+    deduplicate: bool = True,
     **metadata_kwargs,
 ) -> None:
     """
@@ -182,10 +230,15 @@ def write_sssom(
         output_path: Output file path
         title: Mapping set title
         mapping_set_id: Optional ID (generated if not provided)
+        deduplicate: Whether to remove duplicate mappings (default: True)
         **metadata_kwargs: Additional metadata fields
     """
     if mapping_set_id is None:
         mapping_set_id = f"urn:uuid:{datetime.now().strftime('%Y%m%d%H%M%S')}"
+    
+    # Deduplicate if requested
+    if deduplicate:
+        mappings = deduplicate_mappings(mappings)
     
     metadata = SSSOMMetadata(
         mapping_set_id=mapping_set_id,
@@ -195,3 +248,5 @@ def write_sssom(
     
     writer = SSSOMWriter(metadata)
     writer.write(mappings, output_path)
+
+    

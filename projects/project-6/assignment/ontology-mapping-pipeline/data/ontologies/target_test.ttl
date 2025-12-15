@@ -1,37 +1,294 @@
+@prefix : <http://example.org/target-ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix tgt: <http://example.org/target#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
 
-<http://example.org/target> a owl:Ontology ;
-    rdfs:label "Target Test Ontology" ;
-    rdfs:comment "A simple test ontology to map against" .
+<http://example.org/target-ontology>
+    rdf:type owl:Ontology ;
+    owl:imports <http://purl.obolibrary.org/obo/bfo.owl> ;
+    dc:title "Target Ontology - Clinical Domain"@en ;
+    dc:description "A BFO-aligned target ontology for clinical concepts, used in ontology mapping demonstrations."@en ;
+    rdfs:comment "This ontology follows the Basic Formal Ontology (BFO) 2020 upper-level structure."@en .
 
-tgt:Organism a owl:Class ;
-    rdfs:label "Organism" ;
-    rdfs:comment "A living entity" .
+#################################################################
+#    Classes - Material Entities (subclasses of BFO:0000040)
+#################################################################
 
-tgt:Vertebrate a owl:Class ;
-    rdfs:label "Vertebrate" ;
-    rdfs:subClassOf tgt:Organism ;
-    rdfs:comment "An animal with a backbone" .
+### Clinical Subject
+:ClinicalSubject
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000030 ;  # BFO object
+    rdfs:label "Clinical Subject"@en ;
+    skos:prefLabel "Clinical Subject"@en ;
+    skos:altLabel "Study Subject"@en ;
+    skos:altLabel "Research Participant"@en ;
+    skos:definition "A human being who is the subject of clinical observation, study, or treatment."@en ;
+    skos:example "An individual enrolled in a clinical trial."@en .
 
-tgt:Canine a owl:Class ;
-    rdfs:label "Canine" ;
-    rdfs:subClassOf tgt:Vertebrate ;
-    rdfs:comment "A member of the dog family Canidae" .
+### Medical Equipment
+:MedicalEquipment
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000030 ;  # BFO object
+    rdfs:label "Medical Equipment"@en ;
+    skos:prefLabel "Medical Equipment"@en ;
+    skos:altLabel "Clinical Instrument"@en ;
+    skos:altLabel "Healthcare Device"@en ;
+    skos:definition "An object used in the delivery of medical care for diagnosis, monitoring, or treatment."@en ;
+    skos:example "Ventilator, defibrillator, or imaging scanner."@en .
 
-tgt:Feline a owl:Class ;
-    rdfs:label "Feline" ;
-    rdfs:subClassOf tgt:Vertebrate ;
-    rdfs:comment "A member of the cat family Felidae" .
+### Therapeutic Agent
+:TherapeuticAgent
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000040 ;  # BFO material entity
+    rdfs:label "Therapeutic Agent"@en ;
+    skos:prefLabel "Therapeutic Agent"@en ;
+    skos:altLabel "Pharmacological Substance"@en ;
+    skos:altLabel "Medicine"@en ;
+    skos:definition "A material substance administered for therapeutic purposes."@en ;
+    skos:example "Analgesics, antivirals, or immunosuppressants."@en .
 
-tgt:Avian a owl:Class ;
-    rdfs:label "Avian" ;
-    rdfs:subClassOf tgt:Vertebrate ;
-    rdfs:comment "Relating to birds" .
+### Anatomical Region
+:AnatomicalRegion
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000024 ;  # BFO fiat object part
+    rdfs:label "Anatomical Region"@en ;
+    skos:prefLabel "Anatomical Region"@en ;
+    skos:altLabel "Body Region"@en ;
+    skos:altLabel "Anatomical Site"@en ;
+    skos:definition "A demarcated region of the body defined by anatomical boundaries."@en ;
+    skos:example "Thorax, abdomen, or upper extremity."@en .
 
-tgt:Pisces a owl:Class ;
-    rdfs:label "Pisces" ;
-    rdfs:subClassOf tgt:Organism ;
-    rdfs:comment "Fish - aquatic vertebrates with gills" .
+### Clinical Facility
+:ClinicalFacility
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000029 ;  # BFO site
+    rdfs:label "Clinical Facility"@en ;
+    skos:prefLabel "Clinical Facility"@en ;
+    skos:altLabel "Healthcare Institution"@en ;
+    skos:altLabel "Medical Center"@en ;
+    skos:definition "A site dedicated to the provision of clinical care and medical services."@en ;
+    skos:example "Outpatient clinic, emergency department, or rehabilitation center."@en .
+
+#################################################################
+#    Classes - Processes (subclasses of BFO:0000015)
+#################################################################
+
+### Clinical Intervention
+:ClinicalIntervention
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # BFO process
+    rdfs:label "Clinical Intervention"@en ;
+    skos:prefLabel "Clinical Intervention"@en ;
+    skos:altLabel "Therapeutic Procedure"@en ;
+    skos:altLabel "Medical Intervention"@en ;
+    skos:definition "A process of clinical action taken to modify or prevent a health condition."@en ;
+    skos:example "Drug therapy, radiation treatment, or lifestyle intervention."@en .
+
+### Operative Procedure
+:OperativeProcedure
+    rdf:type owl:Class ;
+    rdfs:subClassOf :ClinicalIntervention ;
+    rdfs:label "Operative Procedure"@en ;
+    skos:prefLabel "Operative Procedure"@en ;
+    skos:altLabel "Surgical Intervention"@en ;
+    skos:altLabel "Invasive Procedure"@en ;
+    skos:definition "A clinical intervention involving operative techniques to treat disease or injury."@en ;
+    skos:example "Laparoscopic surgery, organ transplant, or tumor resection."@en .
+
+### Clinical Assessment
+:ClinicalAssessment
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # BFO process
+    rdfs:label "Clinical Assessment"@en ;
+    skos:prefLabel "Clinical Assessment"@en ;
+    skos:altLabel "Diagnostic Evaluation"@en ;
+    skos:altLabel "Clinical Evaluation"@en ;
+    skos:definition "A process of evaluating a patient's health status to identify diseases or conditions."@en ;
+    skos:example "History taking, laboratory testing, or imaging study."@en .
+
+### Drug Delivery
+:DrugDelivery
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000015 ;  # BFO process
+    rdfs:label "Drug Delivery"@en ;
+    skos:prefLabel "Drug Delivery"@en ;
+    skos:altLabel "Pharmacotherapy Administration"@en ;
+    skos:definition "A process of delivering a therapeutic agent to a patient."@en ;
+    skos:example "Intramuscular injection, oral dosing, or transdermal delivery."@en .
+
+#################################################################
+#    Classes - Dispositions (subclasses of BFO:0000016)
+#################################################################
+
+### Pathological Condition
+:PathologicalCondition
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000016 ;  # BFO disposition
+    rdfs:label "Pathological Condition"@en ;
+    skos:prefLabel "Pathological Condition"@en ;
+    skos:altLabel "Medical Condition"@en ;
+    skos:altLabel "Morbidity"@en ;
+    skos:definition "A disposition characterized by abnormal structure or function that impairs health."@en ;
+    skos:example "Infectious disease, metabolic disorder, or neoplasm."@en .
+
+### Clinical Manifestation Disposition
+:ClinicalManifestationDisposition
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000016 ;  # BFO disposition
+    rdfs:label "Clinical Manifestation Disposition"@en ;
+    skos:prefLabel "Clinical Manifestation Disposition"@en ;
+    skos:altLabel "Sign/Symptom Disposition"@en ;
+    skos:definition "A disposition that can be realized as clinical signs or symptoms."@en ;
+    skos:example "A disposition to present with pain, inflammation, or dyspnea."@en .
+
+#################################################################
+#    Classes - Roles (subclasses of BFO:0000023)
+#################################################################
+
+### Clinician Role
+:ClinicianRole
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000023 ;  # BFO role
+    rdfs:label "Clinician Role"@en ;
+    skos:prefLabel "Clinician Role"@en ;
+    skos:altLabel "Medical Practitioner Role"@en ;
+    skos:definition "A role assumed by a person who provides clinical care."@en ;
+    skos:example "The role of attending physician, consulting specialist, or nurse practitioner."@en .
+
+### Subject Role
+:SubjectRole
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000023 ;  # BFO role
+    rdfs:label "Subject Role"@en ;
+    skos:prefLabel "Subject Role"@en ;
+    skos:altLabel "Care Recipient Role"@en ;
+    skos:definition "A role assumed by an individual receiving clinical care or participating in clinical study."@en ;
+    skos:example "The role of an inpatient or outpatient in a clinical encounter."@en .
+
+#################################################################
+#    Classes - Qualities (subclasses of BFO:0000019)
+#################################################################
+
+### Physiological Parameter
+:PhysiologicalParameter
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000019 ;  # BFO quality
+    rdfs:label "Physiological Parameter"@en ;
+    skos:prefLabel "Physiological Parameter"@en ;
+    skos:altLabel "Vital Parameter"@en ;
+    skos:altLabel "Clinical Parameter"@en ;
+    skos:definition "A measurable quality reflecting physiological state."@en ;
+    skos:example "Pulse rate, respiratory rate, or oxygen saturation."@en .
+
+### Clinical Severity
+:ClinicalSeverity
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000019 ;  # BFO quality
+    rdfs:label "Clinical Severity"@en ;
+    skos:prefLabel "Clinical Severity"@en ;
+    skos:altLabel "Disease Severity"@en ;
+    skos:definition "A quality describing the degree of clinical impact or seriousness."@en ;
+    skos:example "Grade I-IV classification or mild/moderate/severe staging."@en .
+
+#################################################################
+#    Classes - Generically Dependent Continuants (BFO:0000031)
+#################################################################
+
+### Clinical Documentation
+:ClinicalDocumentation
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000031 ;  # BFO generically dependent continuant
+    rdfs:label "Clinical Documentation"@en ;
+    skos:prefLabel "Clinical Documentation"@en ;
+    skos:altLabel "Clinical Note"@en ;
+    skos:altLabel "Medical Documentation"@en ;
+    skos:definition "A generically dependent continuant that records clinical information."@en ;
+    skos:example "Progress note, operative report, or consultation record."@en .
+
+### Care Protocol
+:CareProtocol
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000031 ;  # BFO generically dependent continuant
+    rdfs:label "Care Protocol"@en ;
+    skos:prefLabel "Care Protocol"@en ;
+    skos:altLabel "Clinical Pathway"@en ;
+    skos:altLabel "Standard of Care"@en ;
+    skos:definition "A generically dependent continuant specifying standardized clinical procedures."@en ;
+    skos:example "Stroke protocol, code blue algorithm, or chemotherapy regimen."@en .
+
+#################################################################
+#    Classes - Temporal Regions (BFO:0000008)
+#################################################################
+
+### Care Episode Duration
+:CareEpisodeDuration
+    rdf:type owl:Class ;
+    rdfs:subClassOf obo:BFO_0000202 ;  # BFO temporal interval
+    rdfs:label "Care Episode Duration"@en ;
+    skos:prefLabel "Care Episode Duration"@en ;
+    skos:altLabel "Episode of Care Period"@en ;
+    skos:definition "A temporal interval encompassing a distinct period of clinical care."@en ;
+    skos:example "ICU admission period, pregnancy trimester, or post-operative recovery phase."@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+### has participant (using BFO relation)
+:hasSubject
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000057 ;  # BFO has participant
+    rdfs:domain :ClinicalIntervention ;
+    rdfs:range :ClinicalSubject ;
+    rdfs:label "has subject"@en ;
+    skos:definition "Relates a clinical intervention to the subject who participates."@en .
+
+### occurs in (using BFO relation)
+:performedAt
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000066 ;  # BFO occurs in
+    rdfs:domain :ClinicalIntervention ;
+    rdfs:range :ClinicalFacility ;
+    rdfs:label "performed at"@en ;
+    skos:definition "Relates a clinical intervention to the facility where it is performed."@en .
+
+### bearer of (using BFO relation)
+:hasCondition
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000196 ;  # BFO bearer of
+    rdfs:domain :ClinicalSubject ;
+    rdfs:range :PathologicalCondition ;
+    rdfs:label "has condition"@en ;
+    skos:definition "Relates a clinical subject to a pathological condition they bear."@en .
+
+### realizes (using BFO relation)
+:realizesClinicianRole
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000055 ;  # BFO realizes
+    rdfs:domain :ClinicalIntervention ;
+    rdfs:range :ClinicianRole ;
+    rdfs:label "realizes clinician role"@en ;
+    skos:definition "Relates an intervention to the clinician role it realizes."@en .
+
+### occupies temporal region (using BFO relation)
+:hasCareEpisode
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000199 ;  # BFO occupies temporal region
+    rdfs:domain :ClinicalIntervention ;
+    rdfs:range :CareEpisodeDuration ;
+    rdfs:label "has care episode"@en ;
+    skos:definition "Relates a clinical intervention to its temporal duration."@en .
+
+### is carrier of (using BFO relation)
+:recordedIn
+    rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf obo:BFO_0000101 ;  # BFO is carrier of
+    rdfs:domain :ClinicalSubject ;
+    rdfs:range :ClinicalDocumentation ;
+    rdfs:label "recorded in"@en ;
+    skos:definition "Relates a clinical subject to documentation recording their information."@en .
